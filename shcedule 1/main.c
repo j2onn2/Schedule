@@ -3,6 +3,7 @@
 #include <string.h>
 #include "schedule.h"
 #include "linkedList.h"
+#include "elsefunction.h"
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
@@ -52,10 +53,12 @@ int main(int argc, char *argv[]) {
 	while(exit_flag == 0) 
 	{
 		//3. menu printing
-		//fill code here ---- 
+		void menu_printing ()	;
+		
 		
 		//4. get option from keyboard
-		//fill code here ----
+		printf("Select an option : ")	;
+		scanf("%d", &option)
 		
 		
 		switch(option)
