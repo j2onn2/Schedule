@@ -85,12 +85,13 @@ void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 {
 	schedInfo_t* schedPtr;
 	
-	schedPtr = (schedInfo_t*)malloc(5*sizeof(schedInfo_t*))	; //5개의 동적메모리를 
+	schedPtr = (schedInfo_t*)malloc(5*sizeof(schedInfo_t))	; //5개의 동적메모리를 
 	
 	//error handler
 	if(schedPtr == NULL) {
 		printf("Error to allocate memory\n")	;
-		exit(1)	;
+		//exit(-1)	;
+		
 	}
 	//allocate memory and set the member variables
 	
@@ -100,7 +101,7 @@ void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 	schedPtr -> month = month ;
 	schedPtr -> day = day	; 
 	
-	free(schedPtr)	; 
+	free(schedPtr)	;
 	return (void*)schedPtr;
 }
 
@@ -109,7 +110,7 @@ void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 //get month information from the scheduler info structure
 float sched_getMonth(void* obj)
 {
-	schedInfo_t*	schedPtr = (schedInfo_t*)obj	;
+	schedInfo_t* schedPtr = (schedInfo_t*)obj	;
 	
 	if(schedPtr == NULL){
 		printf("Error to load schedule Info\n")	;
@@ -122,7 +123,7 @@ float sched_getMonth(void* obj)
 //get type information from the scheduler info structure
 int sched_getType(void* obj)
 {
-	schedInfo_t*	schedPtr = (schedInfo_t*)obj	;
+	schedInfo_t* schedPtr = (schedInfo_t*)obj	;
 	
 	if(schedPtr == NULL) {
 		printf("Error to load schedule Info\n")	;
@@ -136,7 +137,7 @@ int sched_getType(void* obj)
 //get place string information from the scheduler info structure
 char* sched_getPlace(void* obj)
 {
-	schedInfo_t*	schedPtr = (schedInfo_t*)obj	;
+	schedInfo_t* schedPtr = (schedInfo_t*)obj	;
 	
 	if(schedPtr == NULL){
 		printf("Error to load schedule Info\n")	;
@@ -148,7 +149,22 @@ char* sched_getPlace(void* obj)
 //convert the name of the type into the enum(integer) value
 int sched_convertType(char* typeName)
 {
-	
+	if(strcmp (typeName, "drama") == 0) {
+		return 0	;
+	}else if (strcmp (typeName, "movie") == 0){
+		return 1	;
+	}else if (strcmp (typeName, "advertisement") == 0){
+		return 2	;
+	}else if (strcmp ( typeName, "entertainment") == 0){
+		return 3	;
+	}else if (strcmp (typeName, "meeting") == 0){
+		return 4	;
+	}else if (strcmp (typeName, "fitness") == 0){
+		return 5	;
+	}else if (strcmp (typeName, "privacy") ==0) {
+		return 6	;
+	}
+	else return -1	;
 	
 	
 }
