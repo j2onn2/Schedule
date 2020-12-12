@@ -1,4 +1,7 @@
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "schedule.h"
 
 
 void menu_printing (void) {
@@ -14,7 +17,7 @@ void menu_printing (void) {
 		}	;
 		
 	for (i=0; i<5 ; i++)
-		printf("%d. %s\n", i, menu[i])	;
+		printf("%d. %s\n", i+1, menu[i])	;
 		
 
 }
