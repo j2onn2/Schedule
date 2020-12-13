@@ -7,7 +7,7 @@
 void menu_printing (void) {
 	
 	int i	;
-	char menu[5][50] = {
+	char menu[5][50] = {								//use array for print menu
 	
 		"Print all the schedules",
 		"Search for schedules in the month",
@@ -22,8 +22,9 @@ void menu_printing (void) {
 
 }
 
-
+//print dash line
 void dash_printing () {
 
 	printf("----------------------------------\n")	;
+	
 }

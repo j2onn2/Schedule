@@ -40,7 +40,7 @@ typedef enum scheduleType {
 //structure definition for a schedule info.
 typedef struct schedInfo
 {
-	char name[200];			//schedule name
+	char name[100];			//schedule name
 	scheduleType_e type;	//schedule type
 	int month;				//when : month
 	int day;				//when : day
@@ -53,7 +53,7 @@ void sched_printTypes(void)
 	int i;
 	
 	for (i=0;i<MAX_TYPE;i++) {
-		printf("- %s\n", i, type_string[i]);
+		printf("- %s\n", type_string[i]);
 	}
 }
 
@@ -83,25 +83,22 @@ void sched_print(void* obj)
 //generating a structure of scheduling information
 void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 {
-	schedInfo_t* schedPtr;
-	
-	schedPtr = (schedInfo_t*)malloc(5*sizeof(schedInfo_t))	; //5개의 동적메모리를 
+	schedInfo_t* schedPtr =  malloc(5*sizeof(schedInfo_t))	;					//use 5 size of malloc 
 	
 	//error handler
-	if(schedPtr == NULL) {
+	if(schedPtr == NULL) {														//if schedPtr is empty, it can't be allocate
 		printf("Error to allocate memory\n")	;
-		//exit(-1)	;
+		exit(-1)	;
 		
 	}
 	//allocate memory and set the member variables
 	
-	strcpy(schedPtr -> name, name)	;	//문자이기 때문에  strcpy로 써줌  
+	strcpy(schedPtr -> name, name)	;											//use strcpy for character variables  
 	strcpy(schedPtr -> place, place) ;
-	schedPtr -> type = type	;			//나머지는 정수형 변수기 때문에 그냥 써줌 
+	schedPtr -> type = type	;													//rest are integer variables, so just write them down
 	schedPtr -> month = month ;
 	schedPtr -> day = day	; 
 	
-	free(schedPtr)	;
 	return (void*)schedPtr;
 }
 
@@ -110,26 +107,26 @@ void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 //get month information from the scheduler info structure
 float sched_getMonth(void* obj)
 {
-	schedInfo_t* schedPtr = (schedInfo_t*)obj	;
+	schedInfo_t* schedPtr = (schedInfo_t*)obj	;							//load to schedInfo_t
 	
-	if(schedPtr == NULL){
+	if(schedPtr == NULL){													//when schedPtr is empty it can't be load schedule
 		printf("Error to load schedule Info\n")	;
 	}
 	
-	return (float)schedPtr -> month	;
+	return (float)schedPtr -> month	;										//return month
 }
 
 
 //get type information from the scheduler info structure
 int sched_getType(void* obj)
 {
-	schedInfo_t* schedPtr = (schedInfo_t*)obj	;
+	schedInfo_t* schedPtr = (schedInfo_t*)obj	;							//load to schedInfo_t
 	
 	if(schedPtr == NULL) {
 		printf("Error to load schedule Info\n")	;
 	}
 	
-	return schedPtr -> type	;
+	return schedPtr -> type	;												//return type	
 }
 
 
@@ -137,19 +134,19 @@ int sched_getType(void* obj)
 //get place string information from the scheduler info structure
 char* sched_getPlace(void* obj)
 {
-	schedInfo_t* schedPtr = (schedInfo_t*)obj	;
+	schedInfo_t* schedPtr = (schedInfo_t*)obj	;							//load to schedInfo_t
 	
 	if(schedPtr == NULL){
 		printf("Error to load schedule Info\n")	;
 	}
 	
-	return schedPtr -> place	;
+	return schedPtr -> place	;											//return place
 }
 
 //convert the name of the type into the enum(integer) value
 int sched_convertType(char* typeName)
-{
-	if(strcmp (typeName, "drama") == 0) {
+{																			//use strcmp to compare , when two of them are same it will 0
+	if(strcmp (typeName, "drama") == 0) {									//so when the value is 0 return 0~6 for each types
 		return 0	;
 	}else if (strcmp (typeName, "movie") == 0){
 		return 1	;
