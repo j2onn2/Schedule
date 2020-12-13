@@ -39,18 +39,17 @@ int main(int argc, char *argv[]) {
 	printf("Reading the data files... \n");
 	list = (void*)list_genList();
 	
-	
-	
+
 	
 	//2. read from the file
-	while ( !(feof(fp)) ) 
+	while ( !(feof(fp) ) )																//until the file finish
 	{	
-		fscanf(fp, "%s %s %d %d %d", name, place, &type, &month, &day)	; 				//use fscanf to get from file , divide number and letter variables 
-				
+		if(fscanf(fp, "%s %s %d %d %d", name, place, &type, &month, &day)>0){	; 		//use fscanf to get from file , when file has value fscanf's return value will over 0 (so skip blank) 
+		
 		schedInfo = sched_genSchedInfo(name, place, type, month, day)	;				//use sched_genSchedInfo to make sched_Info, put variables from fscanf 
 		
 		list_addTail(schedInfo, list);
-		
+		}
 	}
 		
 	fclose (fp)	;																		//use fclose to close file pointer
